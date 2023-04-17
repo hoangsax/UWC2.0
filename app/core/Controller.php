@@ -1,5 +1,5 @@
 <?php
-
+ 
 class Controller {
     public function view($page, $data = []) {
         if (!empty($data)) extract($data);

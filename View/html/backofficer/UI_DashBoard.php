@@ -1,3 +1,26 @@
+<?php
+    require_once "../../../app/core/init.php";
+    $servername = 'localhost';
+    $username = 'root';
+    $password = '';
+
+    //Create connection
+    $conn = mysqli_connect($servername, $username, $password);
+
+    //Check connection
+    if (!$conn){
+        die('Not connected:'. mysqli_error($conn));
+    }
+
+    //Select Database
+    $db = mysqli_select_db($conn,'uwc2.0');
+
+    //Query
+    $sql = "SELECT * FROM user";
+    $alluser = mysqli_query($conn, $sql);
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

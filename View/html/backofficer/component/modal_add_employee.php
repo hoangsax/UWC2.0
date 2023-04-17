@@ -6,7 +6,7 @@
         <h5>Thêm thông tin nhân viên</h5>
         </div>
         <div class="modal-body">
-        <form method="POST">
+        <form action="component/modal_add_employee_post.php" method="POST">
             <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
@@ -79,11 +79,28 @@
                     </div>
                 </div>
             </div>
-        </form>
-        </div>
-        <div class="modal-footer">
+            <div class="row mt-2">
+            <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="gender" style="font-weight: 500;">VỊ TRÍ</label><br>
+                        <div class="form-check-inline mt-1">
+                            <label>
+                                <input type="radio" class="form-check-input" name="role" value="janitor" required>Janitor
+                            </label>
+                        </div>
+                        <div class="form-check-inline">
+                            <label>
+                                <input type="radio" class="form-check-input" name="role" value="collector" required>Collector
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
             <button type="button" class="btn btn-dark" data-dismiss="modal">Hủy</button>
-            <a href="#"><button type="button" class="btn btn-primary" data-dismiss="modal">Thêm</button></a>
+            <input type="submit" class="btn btn-primary" value="Thêm">
+            </div>
+        </form>
         </div>
     </div>
     </div>

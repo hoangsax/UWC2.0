@@ -78,5 +78,17 @@
             </div>
         </div>
     </div>
+    <script type="text/javascript">
+        function login() {
+            var email = document.getElementById("email").value;
+            var password = document.getElementById("password").value;
+            if (email == "h@gmail.com" && password == "123")
+            {
+                $_SESSION('user') = email;
+                $_SESSION('password') = password;
+                require 
+            }
+        }
+    </script>
 </body>
 </html>

@@ -17,34 +17,22 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>John Doe</td>
-                        <td>Janitor</td>
-                        <td>2023-03-01</td>
-                        <td><span class="badge bg-success">Completed</span></td>
-                        <td>
-                            <a href="UI_DetailsTask.php" class="ms-5">...</a>
-                        </td>
-                        <td>
-                            <?php require 'modal_edit_employee.php'; ?>
-                            <?php require 'modal_delete_employee.php'; ?>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Jane Smith</td>
-                        <td>Collector</td>
-                        <td>N/A</td>
-                        <td><span class="badge bg-secondary">N/A</span></td>
-                        <td>
-                            <a href="UI_DetailsTask.php" class="ms-5">...</a>
-                        </td>
-                        <td>
-                            <?php require 'modal_edit_employee.php'; ?>
-                            <?php require 'modal_delete_employee.php'; ?>
-                        </td>
-                    </tr>   
+                    <?php
+                        foreach ($alluser as $user){?>
+                            <tr>
+                                <td><?php echo $user['ID'];?></td>
+                                <td><?php echo $user['name'];?></td>
+                                <td><?php echo $user['role'];?></td>
+                                <td><?php echo $user['Date']?? "N/A";?></td>
+                                <td><?php echo "<span class=\"badge bg-secondary\">N/A</span>";?></td>
+                                <td>
+                                    <a href="UI_DetailsTask.php" class="ms-5">...</a>
+                                </td>
+                                <td>
+                                    <?php require 'modal_edit_employee.php'; ?>
+                                    <?php require 'modal_delete_employee.php'; ?>
+                                </td>
+                        <?php }?>   
                 </tbody>
                 <tfoot>
                     <tr>

@@ -26,4 +26,15 @@ class Users {
         // $email, $newPassword
     }
 
+    public function addUser($ID, $name, $CMND, $email, $tel, $password, $address, $gender, $role)
+    {
+        $sql = "select * from User where email = '$email'";
+        $userItem = $this->executeResult($sql, true);
+        if ($userItem != null) {
+            return false;
+        }
+        $sql = "insert into user(ID, name, CMND, email, tel, password, address, gender, role) values ('$ID', '$name', '$CMND', '$email', '$tel', '$password', '$address', '$gender', '$role')";
+        $this->execute($sql);
+        return true;
+    }
 }
