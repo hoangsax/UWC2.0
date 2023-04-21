@@ -2,13 +2,13 @@
         <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5>Modify Task</h5>
+                <h5>Chỉnh sửa công việc</h5>
             </div>
             <div class="modal-body">
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-dark" data-dismiss="modal">Cancel</button>
-                <a href="#"><button type="button" class="btn btn-success" data-dismiss="modal">Save</button></a>
+                <button type="button" class="btn btn-dark" data-dismiss="modal">Huỷ</button>
+                <a href="#"><button type="button" class="btn btn-success" data-dismiss="modal">Lưu</button></a>
             </div>
         </div>
         </div>

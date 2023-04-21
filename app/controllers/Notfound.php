@@ -1,8 +1,9 @@
 <?php
 
-class NotFound extends Controller {
+class NotFound  {
+    use Controller;
+
     public function index() {
-        echo "404";
+        echo "404 Page not found";
     }
 }
-// fixed

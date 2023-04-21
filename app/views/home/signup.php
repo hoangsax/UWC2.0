@@ -1,5 +1,5 @@
 <?php require_once APPROOT.'/views/header.php'; ?>
-<title>Đăng nhập</title>
+<title>Đăng ký</title>
 
     <!-- Icon -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" />
@@ -25,18 +25,43 @@
             <div class="frame_login">
 
 
-                    <h4 style="font-weight: 700;">ĐĂNG NHẬP VÀO TÀI KHOẢN CỦA BẠN</h4>
+                
+                    <h4 style="font-weight: 700;">ĐĂNG KÝ TÀI KHOẢN MỚI</h4>
                     <h6 class="mt-3 text-muted text-white" style="font-weight: 500;">Điền thông tin chi tiết</h6>
                     <form method="post">
-                        <!-- login check -->
-                
+                    <!-- signup update-->
                         <?php if(!empty($errors)):?>
                         <div class = "alert alert-danger">
                             <?= implode("<br>", $errors);?>
                         </div>
                         <?php endif;?>
-                        <!-- login -->
-                        <div class="form-group mt-5">
+                        <!-- signup update-->
+                        <div class="form-group mt-3">
+                            <label for="name" style="font-weight: 700;">HỌ VÀ TÊN</label>
+                            <div class="input-group">
+                                <input  type="text" class="form-control mt-3"  name='name'
+                                        id="name" style="border-radius: 0; padding-left: 40px;" 
+                                        placeholder="Nhập họ và tên">
+                                <span class="input-group-addon" 
+                                        style="position: absolute; left: 15px; top: 23px;">
+                                        <i class="fa fa-phone text-success"></i>
+                                </span>
+                            </div>
+                        </div> 
+                        <div class="form-group mt-3">
+                            <label for="email" style="font-weight: 700;">EMAIL</label>
+                            <div class="input-group">
+                                <input  type="text" class="form-control mt-3"  name='email'
+                                        id="email" style="border-radius: 0; padding-left: 40px;" 
+                                        placeholder="Nhập email">
+                                <span class="input-group-addon" 
+                                        style="position: absolute; left: 15px; top: 23px;">
+                                        <i class="fa fa-phone text-success"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <!-- signup -->
+                        <div class="form-group mt-3">
                             <label for="phonenumber" style="font-weight: 700;">SỐ ĐIỆN THOẠI</label>
                             <div class="input-group">
                                 <input  type="text" class="form-control mt-3"  name='phone'
@@ -47,7 +72,19 @@
                                         <i class="fa fa-phone text-success"></i>
                                 </span>
                             </div>
-                            </div>                                  
+                        </div>               
+                        <div class="form-group mt-3">
+                            <label for="address" style="font-weight: 700;">ĐỊA CHỈ</label>
+                            <div class="input-group">
+                                <input  type="text" class="form-control mt-3"  name='address'
+                                        id="address" style="border-radius: 0; padding-left: 40px;" 
+                                        placeholder="Nhập địa chỉ">
+                                <span class="input-group-addon" 
+                                        style="position: absolute; left: 15px; top: 23px;">
+                                        <i class="fa fa-phone text-success"></i>
+                                </span>
+                            </div>
+                        </div>                    
                         <div class="form-group mt-3">
                             <label for="password" style="font-weight: 700;">MẬT KHẨU</label>
                             <div class="input-group">
@@ -62,10 +99,10 @@
                         </div>
                         <button type="submit" class="btn btn-danger mt-4" 
                                 style="min-width: 120px; border-radius: 0;">
-                                Đăng Nhập
+                                Đăng Ký
                         </button>
-                        <p class="text-left text-muted mt-5 mb-0">Tạo tài khoản mới ? <a href="<?= ROOT ?>/home/signup"
-                    class="fw-bold text-body"><u>Đăng ký</u></a></p>
+                        <p class="text-left text-muted mt-5 mb-0">Đã có tài khoản? Đăng nhập  <a href="<?= ROOT ?>/home/"
+                    class="fw-bold text-body"><u>tại đây</u></a></p>
 
                     </form>
             </div>

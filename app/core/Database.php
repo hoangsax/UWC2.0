@@ -1,7 +1,6 @@
 <?php
 
 Trait Database {
-            // Hàm kết nối CSDL
     private function connect() {
         $string = "mysql:hostname=".DB_HOST.";dbname=".DB_NAME;
         $conn = new PDO($string, DB_USER, DB_PASS);
@@ -18,7 +17,7 @@ Trait Database {
         }
         return false;
     }
-
+    //return a row
     public function get_row($query, $data = []) {
         $conn = $this->connect();
         $statement = $conn->prepare($query);
@@ -30,4 +29,4 @@ Trait Database {
 
     
 }
-//.
+

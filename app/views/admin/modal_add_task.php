@@ -2,13 +2,13 @@
     <div class="modal-dialog" role="document">
     <div class="modal-content">
         <div class="modal-header">
-        <h5>Add Task</h5>
+        <h5>Thêm công việc</h5>
         </div>
         <div class="modal-body">
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-dark" data-dismiss="modal">Cancel</button>
-            <a href="#"><button type="button" class="btn btn-success" data-dismiss="modal">Add</button></a>
+            <button type="button" class="btn btn-success" data-dismiss="modal">Thêm</button></a>
         </div>
     </div>
     </div>

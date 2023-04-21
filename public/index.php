@@ -1,7 +1,6 @@
 <?php
 
-
-session_start(); //load only one page
+session_start();
 
 require "../app/core/init.php";
 
