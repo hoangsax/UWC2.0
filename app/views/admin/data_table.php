@@ -4,7 +4,6 @@
     </div>
     <div class="card-body">
         <div class="table-responsive">
-            <form methode="POST">
             <table id="employee-table" class="table table-striped" >
                 <thead>
                     <tr>
@@ -20,7 +19,8 @@
                 <tbody>
                     <?php
                         $i = 0;
-                        foreach ($data['allUser'] as $user){?>
+                        foreach ($data['allUser'] as $user){
+                            if ($user['type'] == "Admin") continue;?>
                             <tr id="row_<?=$i?>">
                                     <td><?php echo $user['id'];?></td>
                                     <td><?php echo $user['name'];?></td>
@@ -28,13 +28,15 @@
                                     <td><?php echo $user['Date']?? "N/A";?></td>
                                     <td><?php echo "<span class=\"badge bg-secondary\">N/A</span>";?></td>
                                     <td>
-                                        <a href="UI_DetailsTask.php" class="ms-5">...</a>
+                                    <form method="POST">
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-sm ms-5" name="detail_Task" value="<?=$user['id']?>" ><a>...</a></button>
+                                    </div>
+                                    </form>
                                     </td>
                                     <td>
                                         
                                         <div class="form-group">
-                                            <!-- <button class="btn btn-sm btn-dark" data-target="#confirm-edit-modal" name="edit" onclick="edit_par(<?=$user['id']?>)">Sửa</button> -->
-                                            <?php //require 'modal_edit_employee.php';?>
                                             <button class="btn btn-sm btn-danger" data-target="#confirm-delete-modal" name="delete" onclick="del_par(<?=$user['id']?>)">Xoá</button>
                                             <?php require 'modal_delete_employee.php'; ?>
                                         </div>
@@ -45,8 +47,9 @@
                     <?php }?> 
                 </tbody>
             </table>
-            </form>
             <?php $this->modal_add_employee($data); ?>
         </div>
     </div>  
 </div>
+<script>
+</script>

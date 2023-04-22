@@ -13,14 +13,13 @@ class Admin {
             $data['admin'] = empty($_SESSION['admin']) ? 'admin' :$_SESSION['admin']['name'];
             $user= new Users;
             $data['allUser']=$user->get_employee();
-            if(isset($_POST['btn_edit_employee'])) {
-                echo "<script>alert(\"cc\")</script>";
-                $this->modal_edit_employee();
-            }
             if(isset($_POST['btn_del_employee'])) {
                 $this->modal_delete_employee();
             }
-            $this->view('admin/index',$data);
+            if(isset($_POST['detail_Task'])){
+                $this->detailTask($data);
+            }
+            else $this->view('admin/index',$data);
         }
         else{
             redirect('home/index');
@@ -32,8 +31,9 @@ class Admin {
         $data['allUser']=$user->get_employee();
         $this->view('admin/data_table',$data);
     }
-    public function detailTask() {  
-        $this->view('admin/detailTask');
+    public function detailTask($data) {  
+        $this->view('admin/detailTask', $data);
+
     }
     public function modal_add_employee($data) {
         if (isset($_SESSION["admin"])) {
@@ -66,22 +66,22 @@ class Admin {
         $id = $_POST['btn_del_employee'];
         $user->delete_employee($id);   
     }
-    public function modal_edit_employee() {  
-        $id = $_POST['edit_ID'];
-        $name = $_POST['edit_name'];
-        $email = $_POST['edit_email'];
-        $phone = $_POST['edit_phone'];
-        $address = $_POST['edit_address'];
-        $gender = $_POST['edit_gender'];
-        $type = $_POST['edit_type'];
-        $result = $user->edit_employee($id, $name, $email, $phone, $address, $gender,$type);
-        if($result == 1)
-            echo "<script type=\"text/javascript\">alert(\"ID đã tồn tại\");</script>";
-        elseif($result == 2)
-            echo "<script type=\"text/javascript\">alert(\"Số điện thoại đã tồn tại\");</script>";
-        elseif($result == 3)
-            echo "<script type=\"text/javascript\">alert(\"Email đã tồn tại\");</script>";
-    }
+    // public function modal_edit_employee() {  
+    //     $id = $_POST['edit_ID'];
+    //     $name = $_POST['edit_name'];
+    //     $email = $_POST['edit_email'];
+    //     $phone = $_POST['edit_phone'];
+    //     $address = $_POST['edit_address'];
+    //     $gender = $_POST['edit_gender'];
+    //     $type = $_POST['edit_type'];
+    //     $result = $user->edit_employee($id, $name, $email, $phone, $address, $gender,$type);
+    //     if($result == 1)
+    //         echo "<script type=\"text/javascript\">alert(\"ID đã tồn tại\");</script>";
+    //     elseif($result == 2)
+    //         echo "<script type=\"text/javascript\">alert(\"Số điện thoại đã tồn tại\");</script>";
+    //     elseif($result == 3)
+    //         echo "<script type=\"text/javascript\">alert(\"Email đã tồn tại\");</script>";
+    // }
     public function modal_delete_task() {  
 
     }

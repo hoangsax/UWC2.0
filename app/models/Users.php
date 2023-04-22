@@ -49,13 +49,6 @@ class Users {
 		return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function get_employee_phone($phone){
-		global $db;
-        $GLOBALS['db'] = $this->connect();
-		$stmt = $db->query("SELECT * FROM users WHERE phone = '$phone'");
-		return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }
-
     public function add_employee($id, $name, $email, $phone, $address, $gender,$type){
         global $db;
         $GLOBALS['db'] = $this->connect();
@@ -77,25 +70,25 @@ class Users {
         
         return 0;
     }
-    public function edit_employee($id, $name, $email, $phone, $address, $gender,$type){
-		global $db;
-        $GLOBALS['db'] = $this->connect();
-        //Check ID
-        $stmt = $db->query("SELECT * FROM users WHERE id = '$id'");
-        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        if ($result)  return 1;
-        //Check phone
-        $stmt = $db->query("SELECT * FROM users WHERE phone = '$phone'");
-        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        if ($result)  return 2;
-        //Check email
-        $stmt = $db->query("SELECT * FROM users WHERE email = '$email'");
-        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        if ($result)  return 3;
-		$stmt = $db->prepare("UPDATE users SET name = ?, email = ?, phone =?, address =?, gender =?, type =? WHERE id = ? ");
-		$stmt->execute(array($name, $email, $phone, $address, $gender,$type, $id));
-		return 0;
-    }
+    // public function edit_employee($id, $name, $email, $phone, $address, $gender,$type){
+	// 	global $db;
+    //     $GLOBALS['db'] = $this->connect();
+    //     //Check ID
+    //     $stmt = $db->query("SELECT * FROM users WHERE id = '$id'");
+    //     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    //     if ($result)  return 1;
+    //     //Check phone
+    //     $stmt = $db->query("SELECT * FROM users WHERE phone = '$phone'");
+    //     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    //     if ($result)  return 2;
+    //     //Check email
+    //     $stmt = $db->query("SELECT * FROM users WHERE email = '$email'");
+    //     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    //     if ($result)  return 3;
+	// 	$stmt = $db->prepare("UPDATE users SET name = ?, email = ?, phone =?, address =?, gender =?, type =? WHERE id = ? ");
+	// 	$stmt->execute(array($name, $email, $phone, $address, $gender,$type, $id));
+	// 	return 0;
+    // }
     public function delete_employee($id){
         global $db;
         $stmt = $db->prepare("DELETE FROM users WHERE id = ? ");
