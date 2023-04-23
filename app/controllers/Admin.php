@@ -11,13 +11,14 @@ class Admin {
         }
         if (isset($_SESSION["admin"])) {
             $data['admin'] = empty($_SESSION['admin']) ? 'admin' :$_SESSION['admin']['name'];
-            $user= new Users;
-            $data['allUser']=$user->get_employee();
             if(isset($_POST['btn_del_employee'])) {
                 $this->modal_delete_employee();
             }
-            if(isset($_POST['detail_Task'])){
-                $this->detailTask($data);
+            if(isset($_POST['detail_Task']) || isset($_POST['add_task'])){
+                if (isset($_POST['add_task'])){
+                    $this->modal_add_task();
+                }
+                $this->detailTask();
             }
             else $this->view('admin/index',$data);
         }
@@ -28,10 +29,20 @@ class Admin {
 
     public function data_table() {      //Select employee info
         $user= new Users;
+        $task = new Tasks;
         $data['allUser']=$user->get_employee();
+        $data['allTask'] = $task->get_task();
         $this->view('admin/data_table',$data);
     }
-    public function detailTask($data) {  
+    public function detailTask() {  
+        $user= new Users;
+        $task = new Tasks;
+        $mcp = new MCPs;
+        $veh = new Vehicles;
+        $data['allUser']=$user->get_employee();
+        $data['allTask'] = $task->get_task();
+        $data['allMCP'] = $mcp->get_mcp();
+        $data['allVehicle'] = $veh->get_vehicle();
         $this->view('admin/detailTask', $data);
 
     }
@@ -86,7 +97,17 @@ class Admin {
 
     }
     public function modal_add_task() {  
-        $this->view('admin/modal_add_task');
+        $task = new Tasks;
+        if(isset($_POST['add_task'])){
+            $check = true;
+            $Assign_Date = $_POST['date'];
+            $Vehicle_ID = $_POST['idvehicle'];
+            $Start = $_POST['time'];
+            $End = $_POST['time_end'];
+            $MCP_List = $_POST['listMCP'];
+            $Staff_ID = $_POST['add_task'];
+            $result = $task->add_employee($Staff_ID, $MCP_List, "Pending", $Assign_Date, $Start,$End, $Vehicle_ID);
+        }
     }
 
     public function modal_edit_task() {  

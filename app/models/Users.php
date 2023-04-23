@@ -37,7 +37,7 @@ class Users {
         return false;
     }
     public function data_table() { //get table employee info
-        $sql = "SELECT * FROM users";
+        $sql = "SELECT * FROM users";;
 		$result = $this->query($sql);
 		return $result; 
 

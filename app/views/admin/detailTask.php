@@ -1,8 +1,15 @@
 <?php 
-  foreach($data['allUser'] as $user_de){
-    if ($user_de['id'] == $_POST['detail_Task']){
-      $cur_em = $user_de;
-      break;
+    if (isset($_POST['detail_Task'])){
+        $data['detail_Task'] = $_POST['detail_Task'];
+    }
+    elseif (isset($_POST['add_task'])){
+        $data['detail_Task'] = $_POST['add_task'];
+    }
+    foreach($data['allUser'] as $user_de){
+        if ($user_de['id'] == $data['detail_Task']){
+        $cur_em = $user_de;
+        
+        break;
     }
   }
 ?>
@@ -70,7 +77,7 @@
               <div class="row">
                   <div class="col-md-12">
                       <button class="btn btn-success btn-detail" data-target="#confirm-add-modal">Add Task</button>
-                      <a href="UI_DashBoard.php"><button class="btn btn-success btn-detail">Go Back</button></a>
+                      <a href=".."><button class="btn btn-success btn-detail">Go Back</button></a>
                       <?php require 'modal_add_task.php'; ?>
                   </div>
               </div>
@@ -114,60 +121,37 @@
                       </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>2023-04-22</td>
-                            <td><span class="badge text-bg-success">Completed</span></td>
-                            <td>
-                                <button class="btn btn-sm btn-secondary" data-target="#view-task-modal">View</button>          
-                                <button class="btn btn-sm btn-primary" data-target="#confirm-edit-modal">Modify</button>
-                                <button class="btn btn-sm btn-danger" data-target="#confirm-delete-modal">Delete</button>
-                                <?php require 'modal_edit_task.php'; ?>
-                                <?php require 'modal_delete_task.php'; ?>
-                                <?php require 'modal_view_task.php'; ?>
+                        <?php
+                            foreach($data['allTask'] as $task){
+                                if ($task['Staff_ID'] == $data['detail_Task']){
+                                    ?>
+                                    <tr>
+                                        <td><?php echo $task['ID']?></td>
+                                        <td><?php echo $task['Assign_Date']?></td>
+                                        <td><?php 
+                                            if ($task['Status'] == "Completed")
+                                                echo "<span class=\"badge text-bg-success\">Completed</span>";
+                                            elseif ($task['Status'] == "Pending")
+                                                echo "<span class=\"badge text-bg-warning\">Pending</span>";
+                                            else
+                                                echo "<span class=\"badge text-bg-primary\">Confirmed</span>";
+
+                                        ?></td>
+                                        <td>
+                                            <button class="btn btn-sm btn-secondary" name="view" onclick="view_task(<?=$task['ID']?>)" data-target="#view-task-modal">View</button>          
+                                            <button class="btn btn-sm btn-primary" data-target="#confirm-edit-modal">Modify</button>
+                                            <button class="btn btn-sm btn-danger" data-target="#confirm-delete-modal">Delete</button>
+                                            <?php require 'modal_edit_task.php'; ?>
+                                            <?php require 'modal_delete_task.php'; ?>
+                                            <?php require 'modal_view_task.php'; ?>
                                 
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>2023-03-06</td>
-                            <td><span class="badge text-bg-warning">Pending</span></td>
-                            <td>
-                                <button class="btn btn-sm btn-secondary" data-target="#view-task-modal">View</button>          
-                                <button class="btn btn-sm btn-primary" data-target="#confirm-edit-modal">Modify</button>
-                                <button class="btn btn-sm btn-danger" data-target="#confirm-delete-modal">Delete</button>
-                                <?php require 'modal_edit_task.php'; ?>
-                                <?php require 'modal_delete_task.php'; ?>
-                                <?php require 'modal_view_task.php'; ?>
-                                
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>2023-04-16</td>
-                            <td><span class="badge text-bg-primary">Confirmed</span></td>
-                            <td>
-                                <button class="btn btn-sm btn-secondary" data-target="#view-task-modal">View</button>          
-                                <button class="btn btn-sm btn-primary" data-target="#confirm-edit-modal">Modify</button>
-                                <button class="btn btn-sm btn-danger" data-target="#confirm-delete-modal">Delete</button>
-                                <?php require 'modal_edit_task.php'; ?>
-                                <?php require 'modal_delete_task.php'; ?>
-                                <?php require 'modal_view_task.php'; ?>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>2023-04-16</td>
-                            <td><span class="badge text-bg-danger">Cancel</span></td>
-                            <td>
-                                <button class="btn btn-sm btn-secondary" data-target="#view-task-modal">View</button>          
-                                <button class="btn btn-sm btn-primary" data-target="#confirm-edit-modal">Modify</button>
-                                <button class="btn btn-sm btn-danger" data-target="#confirm-delete-modal">Delete</button>
-                                <?php require 'modal_edit_task.php'; ?>
-                                <?php require 'modal_delete_task.php'; ?>
-                                <?php require 'modal_view_task.php'; ?>
-                            </td>
-                        </tr>
+                                        </td>
+                                    </tr>
+                                <?php
+                                }
+                            }
+                        ?>
+                            
                     </tbody>
                 </table> 
             </div>  

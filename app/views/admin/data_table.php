@@ -19,14 +19,38 @@
                 <tbody>
                     <?php
                         $i = 0;
-                        foreach ($data['allUser'] as $user){
+                        foreach ($data['allUser'] as $key => $user){
                             if ($user['type'] == "Admin") continue;?>
                             <tr id="row_<?=$i?>">
                                     <td><?php echo $user['id'];?></td>
                                     <td><?php echo $user['name'];?></td>
                                     <td><?php echo $user['type'];?></td>
-                                    <td><?php echo $user['Date']?? "N/A";?></td>
-                                    <td><?php echo "<span class=\"badge bg-secondary\">N/A</span>";?></td>
+                                    <td>
+                                        <?php
+                                            $key = NULL;
+                                            $key = array_search($user['id'], array_reverse(array_column($data['allTask'], 'Staff_ID'), true));
+                                            if (!empty($key) || $key === 0){
+                                                echo $data['allTask'][$key]['Assign_Date'];
+                                                
+                                            }
+                                            else 
+                                                echo "N/A";
+                                            ?></td>
+                                    <td>
+                                        <?php
+                                            if (!empty($key) || $key === 0){
+                                                $status = $data['allTask'][$key]['Status'];
+                                                if ($status == "Completed")
+                                                    echo "<span class=\"badge text-bg-success\">Completed</span>";
+                                                if ($status == "Pending")
+                                                    echo "<span class=\"badge text-bg-warning\">Pending</span>";
+                                                if ($status == "Confirmed")
+                                                    echo "<span class=\"badge text-bg-primary\">Confirmed</span>";
+                                            }
+                                            else
+                                                echo "<span class=\"badge bg-secondary\">N/A</span>";
+                                        ?>
+                                    </td>
                                     <td>
                                     <form method="POST">
                                     <div class="form-group">
