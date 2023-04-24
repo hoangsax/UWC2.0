@@ -122,8 +122,10 @@
                     </thead>
                     <tbody>
                         <?php
+                            $event_task = [];
                             foreach($data['allTask'] as $task){
                                 if ($task['Staff_ID'] == $data['detail_Task']){
+                                    $event_task[] = $task;
                                     ?>
                                     <tr>
                                         <td><?php echo $task['ID']?></td>
@@ -138,9 +140,9 @@
 
                                         ?></td>
                                         <td>
-                                            <button class="btn btn-sm btn-secondary" name="view" onclick="view_task(<?=$task['ID']?>)" data-target="#view-task-modal">View</button>          
+                                            <button class="btn btn-sm btn-secondary" onclick="view_task(<?=$task['ID']?>)" data-target="#view-task-modal">View</button>          
                                             <button class="btn btn-sm btn-primary" data-target="#confirm-edit-modal">Modify</button>
-                                            <button class="btn btn-sm btn-danger" data-target="#confirm-delete-modal">Delete</button>
+                                            <button class="btn btn-sm btn-danger" onclick="delete_task(<?=$task['ID']?>)" data-target="#confirm-delete-modal">Delete</button>
                                             <?php require 'modal_edit_task.php'; ?>
                                             <?php require 'modal_delete_task.php'; ?>
                                             <?php require 'modal_view_task.php'; ?>
@@ -164,6 +166,17 @@
 
 <script>
     $(document).ready(function () {
+        event_task = <?php echo json_encode($event_task)?>;
+        event_task2 = [];
+        for (i = 0; i < event_task.length; i++){
+            temp_ev = [{   
+                    title:event_task[i]['MCP_List'], 
+                    start:event_task[i]['Assign_Date'] + "T" + event_task[i]['Start'].substring(0,8), 
+                    end:event_task[i]['Assign_Date'] + "T" + event_task[i]['End'].substring(0,8),
+                    color:'red'
+                }];
+            event_task2 = event_task2.concat(temp_ev);
+        }
         $('#calendar').fullCalendar({
             header: {
                 left: 'prev,next today',
@@ -172,26 +185,27 @@
             },
             defaultView: 'month',
             selectable: true,
-            events: [ 
-                {
-                    title: 'Làng ĐH, Quận 1',
-                    start: '2023-04-12T10:00:00',
-                    end: '2023-04-12T11:30:00',
-                    color: 'purple'
-                },
-                {
-                    title: 'Ngã 4 Thủ Đức',
-                    start: '2023-04-12T12:00:00',
-                    end: '2023-04-12T14:30:00',
-                    color: 'purple'
-                },
-                {
-                    title: 'DH Bách Khoa',
-                    start: '2023-04-14T14:30:00',
-                    end: '2023-04-14T16:00:00',
-                    color: 'green'
-                }
-            ],
+            events: event_task2
+            // [{
+            //         title: 'Làng ĐH, Quận 1',
+            //         start: '2023-04-12T10:00:00',
+            //         end: '2023-04-12T11:30:00',
+            //         color: 'purple'
+            //     },
+            //     {
+            //         title: 'Ngã 4 Thủ Đức',
+            //         start: '2023-04-12T12:00:00',
+            //         end: '2023-04-12T14:30:00',
+            //         color: 'purple'
+            //     },
+            //     {
+            //         title: 'DH Bách Khoa',
+            //         start: '2023-04-14T14:30:00',
+            //         end: '2023-04-14T16:00:00',
+            //         color: 'green'
+            //     }
+            //     ]
+            ,
             eventClick: function (event) {
                 alert('List MCP: ' + event.title + '\nStart: ' + moment(event.start).format('YYYY-MM-DD HH:mm') + '\nEnd: ' + moment(event.end).format('YYYY-MM-DD HH:mm'));
             },

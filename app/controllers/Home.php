@@ -15,9 +15,7 @@ class Home {
             $row = $user->get_employee_phone($_POST['phone']);
             //check passwork
             if($row){
-                echo $row[0]['name'];
                 if($row[0]['password'] == $_POST['password']){
-                    echo $row[0]['password'];
                     if ($row[0]['type'] != "Admin"){
                         $_SESSION['user'] = $row[0];
                         redirect('user/index');
@@ -27,6 +25,7 @@ class Home {
                         redirect('admin/index');
                     }
                 }
+                else echo "<script type=\"text/javascript\">alert(\"Mật khẩu không hợp lệ\");</script>";
             }
             else{
                 echo "<script type=\"text/javascript\">alert(\"Số điện thoại không hợp lệ\");</script>";

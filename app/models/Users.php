@@ -49,6 +49,13 @@ class Users {
 		return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function get_employee_phone($phone){
+		global $db;
+        $GLOBALS['db'] = $this->connect();
+		$stmt = $db->query("SELECT * FROM users WHERE phone = '$phone'");
+		return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     public function add_employee($id, $name, $email, $phone, $address, $gender,$type){
         global $db;
         $GLOBALS['db'] = $this->connect();
@@ -91,8 +98,9 @@ class Users {
     // }
     public function delete_employee($id){
         global $db;
+        $GLOBALS['db'] = $this->connect();
         $stmt = $db->prepare("DELETE FROM users WHERE id = ? ");
         $stmt->execute(array($id));
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+        $stmt->fetch(PDO::FETCH_ASSOC);
     }
 }

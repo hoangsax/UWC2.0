@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 23, 2023 at 12:23 AM
+-- Generation Time: Apr 24, 2023 at 02:29 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -52,10 +52,10 @@ CREATE TABLE `mcp` (
 --
 
 INSERT INTO `mcp` (`ID`, `Name`, `Capacity`, `Status`, `Location`) VALUES
-(1, 'MCP1', 50, 50, '27, đường số 6, phường Linh Xuân, thành phố Thủ Đức, TP. Hồ Chí Minh'),
-(2, 'MCP 2', 600, 80, '01, đường số 6, phường Linh Xuân, TP Thủ Đức, TPHCM'),
-(3, 'MCP 3', 500, 100, '02, đường số 6, phường Linh Xuân, TP Thủ Đức, TPHCM'),
-(4, 'MCP 4', 600, 10, '03, đường số 6, phường Linh Xuân, TP Thủ Đức, TPHCM'),
+(1, 'MCP 1', 50, 50, '27, đường số 6, phường Linh Xuân, thành phố Thủ Đức, TP. Hồ Chí Minh'),
+(2, 'MCP 2', 60, 80, '01, đường số 6, phường Linh Xuân, TP Thủ Đức, TPHCM'),
+(3, 'MCP 3', 50, 100, '02, đường số 6, phường Linh Xuân, TP Thủ Đức, TPHCM'),
+(4, 'MCP 4', 60, 10, '03, đường số 6, phường Linh Xuân, TP Thủ Đức, TPHCM'),
 (5, 'MCP 6\r\n', 40, 30, '03, đường số 6, phường Linh Xuân, TP Thủ Đức, TPHCM'),
 (6, 'MCP 4', 70, 25, '04, đường số 6, phường Linh Xuân, TP Thủ Đức, TPHCM'),
 (7, 'MCP 5', 90, 20, '05, đường số 6, phường Linh Xuân, TP Thủ Đức, TPHCM');
@@ -108,8 +108,8 @@ CREATE TABLE `task` (
   `MCP_List` varchar(11) NOT NULL,
   `Status` varchar(50) NOT NULL,
   `Assign_Date` date NOT NULL,
-  `Start` varchar(11) NOT NULL,
-  `End` varchar(11) DEFAULT NULL,
+  `Start` time(3) NOT NULL,
+  `End` time(3) DEFAULT NULL,
   `Vehicle_ID` int(11) NOT NULL,
   `Route_ID` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -119,7 +119,13 @@ CREATE TABLE `task` (
 --
 
 INSERT INTO `task` (`ID`, `Staff_ID`, `MCP_List`, `Status`, `Assign_Date`, `Start`, `End`, `Vehicle_ID`, `Route_ID`) VALUES
-(1, 1, '', 'Completed', '0000-00-00', '10:00AM', '12:00PM', 1, 1);
+(2, 3, '1,2', 'Completed', '2023-05-22', '10:00:00.000', '12:00:00.000', 2, 1),
+(13, 3, '1,2', 'Pending', '2020-05-22', '10:00:00.000', '12:00:00.000', 5, 1),
+(20, 2, 'Giá trị 2', 'Pending', '2023-02-01', '01:00:00.000', '13:00:00.000', 1, NULL),
+(27, 3, '2,1', 'Pending', '2024-01-01', '01:00:00.000', '01:00:00.000', 3, NULL),
+(28, 3, '2,1', 'Pending', '2024-01-01', '01:00:00.000', '01:00:00.000', 3, NULL),
+(29, 3, '2,1', 'Pending', '2024-01-01', '01:00:00.000', '01:00:00.000', 3, NULL),
+(38, 3, '2,4,5', 'Pending', '2023-04-24', '01:00:00.000', '02:00:00.000', 2, NULL);
 
 -- --------------------------------------------------------
 
@@ -145,7 +151,6 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `username`, `birthday`, `address`, `email`, `phone`, `gender`, `password`, `type`) VALUES
-(1, 'asdasdasd', '', '0000-00-00', 'ádafaskfa', '123@cc.cc', '010203040512', 'male', '', 'Collector'),
 (2, 'Hoàng Provjp', '', '0000-00-00', 'TP Nha Trang', 'hoangsax123@gmail.co', '01020304051', 'male', '', 'Collector'),
 (3, 'Cong Hoang', '', '0000-00-00', 'asdasdasd', '123@cc.cc1', '1231231', 'male', '', 'Janitor'),
 (20, 'Quản trị viên', '', '0000-00-00', 'TP Nha Trang', 'admin@admin.com', '102030405', '', '102030405', 'Admin');
@@ -262,7 +267,7 @@ ALTER TABLE `route`
 -- AUTO_INCREMENT for table `task`
 --
 ALTER TABLE `task`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT for table `users`

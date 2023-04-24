@@ -63,9 +63,12 @@ $(document).ready(function() {
     delimiter: ',',
     create: true,
     options: [
-      {value: 'q1', text: 'q1'},
-      {value: 'Giá trị 2', text: 'Giá trị 2'},
-      {value: 'Giá trị 3', text: 'Giá trị 3'},
+      {value: '1', text: 'MCP 1'},
+      {value: '2', text: 'MCP 2'},
+      {value: '3', text: 'MCP 3'},
+      {value: '4', text: 'MCP 4'},
+      {value: '5', text: 'MCP 5'},
+      {value: '6', text: 'MCP 6'},
       // Thêm các giá trị khác vào đây
     ],
     render: {
@@ -73,7 +76,7 @@ $(document).ready(function() {
         return '<div>' + escape(item.value) + '</div>';
       },
       option: function(item, escape) {
-        return '<div>' + escape(item.value) + '</div>';
+        return '<div>' + escape(item.text) + '</div>';
       }
     }
   });
